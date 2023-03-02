@@ -50,5 +50,4 @@ function Sort({ value, onChangeSort }) {
     </div>
   );
 }
-
 export default Sort;
