@@ -33,7 +33,7 @@ body {
   &__items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 10px;
 
     @media (max-width: 1400px) {
@@ -115,7 +115,6 @@ body {
     display: flex;
     align-items: center;
     font-size: 32px;
-    
 
     svg {
       position: relative;

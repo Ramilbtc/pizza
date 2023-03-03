@@ -1,11 +1,7 @@
-.root :global li {
+.root li {
   display: inline-block;
 }
-.root :global li .selected {
-  background-color: #fe5f1e;
-  color: #fff;
-}
-.root :global li a {
+.root li a {
   text-align: center;
   width: 45px;
   line-height: 42px;
@@ -17,7 +13,11 @@
   display: inline-block;
   color: #fe5f1e;
 }
-.root :global li a:hover {
+.root li a:hover {
+  background-color: #fe5f1e;
+  color: #fff;
+}
+.root :global .selected a {
   background-color: #fe5f1e;
   color: #fff;
 }
