@@ -10,18 +10,14 @@ import Pagination from '../components/Pagination';
 import { SearchContext } from '../App';
 
 const Home = () => {
-  const categoryId = useSelector((state) => state.filter.categoryId);
   const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.filter.categoryId);
+  const sortType = useSelector((state) => state.filter.sort);
 
   const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  //   const [categoryId, setCategoryId] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [sortType, setSortType] = React.useState({
-    name: 'популярности',
-    sortProperty: 'rating',
-  });
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -55,7 +51,7 @@ const Home = () => {
       <div className="container">
         <div className="content__top">
           <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-          <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
+          <Sort />
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">{isLoading ? skeletons : pizzas}</div>

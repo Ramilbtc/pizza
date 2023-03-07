@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.setCategoryId = exports.filterSlice = void 0;
+exports["default"] = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
@@ -20,11 +20,17 @@ var filterSlice = (0, _toolkit.createSlice)({
   reducers: {
     setCategoryId: function setCategoryId(state, action) {
       state.categoryId = action.payload;
+    },
+    setSort: function setSort(state, action) {
+      state.sort = action.payload;
     }
   }
 });
 exports.filterSlice = filterSlice;
-var setCategoryId = filterSlice.actions.setCategoryId;
+var _filterSlice$actions = filterSlice.actions,
+    setCategoryId = _filterSlice$actions.setCategoryId,
+    setSort = _filterSlice$actions.setSort;
+exports.setSort = setSort;
 exports.setCategoryId = setCategoryId;
 var _default = filterSlice.reducer;
 exports["default"] = _default;
