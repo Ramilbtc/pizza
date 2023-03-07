@@ -3,35 +3,28 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.incrementByAmount = exports.decrement = exports.increment = exports.filterSlice = void 0;
+exports["default"] = exports.setCategoryId = exports.filterSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
 var initialState = {
-  value: 0
+  categoryId: 0,
+  sort: {
+    name: 'популярности',
+    sortProperty: 'rating'
+  }
 };
 var filterSlice = (0, _toolkit.createSlice)({
   name: 'filter',
   initialState: initialState,
   reducers: {
-    increment: function increment(state) {
-      state.value += 1;
-    },
-    decrement: function decrement(state) {
-      state.value -= 1;
-    },
-    incrementByAmount: function incrementByAmount(state, action) {
-      state.value += action.payload;
+    setCategoryId: function setCategoryId(state, action) {
+      state.categoryId = action.payload;
     }
   }
 });
 exports.filterSlice = filterSlice;
-var _filterSlice$actions = filterSlice.actions,
-    increment = _filterSlice$actions.increment,
-    decrement = _filterSlice$actions.decrement,
-    incrementByAmount = _filterSlice$actions.incrementByAmount;
-exports.incrementByAmount = incrementByAmount;
-exports.decrement = decrement;
-exports.increment = increment;
+var setCategoryId = filterSlice.actions.setCategoryId;
+exports.setCategoryId = setCategoryId;
 var _default = filterSlice.reducer;
 exports["default"] = _default;
