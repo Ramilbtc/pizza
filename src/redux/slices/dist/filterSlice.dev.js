@@ -3,12 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
+exports["default"] = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
 var initialState = {
   categoryId: 0,
+  pageCount: 1,
   sort: {
     name: 'популярности',
     sortProperty: 'rating'
@@ -23,13 +24,18 @@ var filterSlice = (0, _toolkit.createSlice)({
     },
     setSort: function setSort(state, action) {
       state.sort = action.payload;
+    },
+    setPageCount: function setPageCount(state, action) {
+      state.pageCount = action.payload;
     }
   }
 });
 exports.filterSlice = filterSlice;
 var _filterSlice$actions = filterSlice.actions,
     setCategoryId = _filterSlice$actions.setCategoryId,
-    setSort = _filterSlice$actions.setSort;
+    setSort = _filterSlice$actions.setSort,
+    setPageCount = _filterSlice$actions.setPageCount;
+exports.setPageCount = setPageCount;
 exports.setSort = setSort;
 exports.setCategoryId = setCategoryId;
 var _default = filterSlice.reducer;
