@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.clearItems = exports.removeItem = exports.addItem = exports.cartSlice = void 0;
+exports["default"] = exports.clearItems = exports.minusItem = exports.removeItem = exports.addItem = exports.cartSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
@@ -38,6 +38,15 @@ var cartSlice = (0, _toolkit.createSlice)({
         return obj.price * obj.count + sum;
       }, 0);
     },
+    minusItem: function minusItem(state, action) {
+      var findItem = state.items.find(function (obj) {
+        return obj.id === action.payload;
+      });
+
+      if (findItem) {
+        findItem.count--;
+      }
+    },
     removeItem: function removeItem(state, action) {
       state.items = state.items.filter(function (obj) {
         return obj.id !== action.payload;
@@ -45,6 +54,7 @@ var cartSlice = (0, _toolkit.createSlice)({
     },
     clearItems: function clearItems(state) {
       state.items = [];
+      state.totalPrice = 0;
     }
   }
 });
@@ -52,8 +62,10 @@ exports.cartSlice = cartSlice;
 var _cartSlice$actions = cartSlice.actions,
     addItem = _cartSlice$actions.addItem,
     removeItem = _cartSlice$actions.removeItem,
+    minusItem = _cartSlice$actions.minusItem,
     clearItems = _cartSlice$actions.clearItems;
 exports.clearItems = clearItems;
+exports.minusItem = minusItem;
 exports.removeItem = removeItem;
 exports.addItem = addItem;
 var _default = cartSlice.reducer;
