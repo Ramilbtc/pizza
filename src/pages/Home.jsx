@@ -29,23 +29,28 @@ const Home = () => {
   };
 
   React.useEffect(() => {
-    setIsLoading(true);
+    async function fetchData() {
+      try {
+        setIsLoading(true);
 
-    const sortBy = sortType.sortProperty.replace('-', '');
-    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const search = searchValue ? `&search=${searchValue}` : '';
+        const sortBy = sortType.sortProperty.replace('-', '');
+        const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+        const category = categoryId > 0 ? `category=${categoryId}` : '';
+        const search = searchValue ? `&search=${searchValue}` : '';
 
-    axios
-      .get(
-        `https://63fc3ef6859df29986b8ebfe.mockapi.io/items?page=${pageCount}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
-      )
-      .then((res) => {
+        const res = await axios.get(
+          `https://63fc3ef6859df29986b8ebfe.mockapi.io/items?page=${pageCount}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
+        );
         setItems(res.data);
+        window.scrollTo(0, 0);
+      } catch (error) {
+        alert('Ошибка при запросе данных');
+        console.error(error);
+      } finally {
         setIsLoading(false);
-      });
-
-    window.scrollTo(0, 0);
+      }
+    }
+    fetchData();
   }, [categoryId, sortType, searchValue, pageCount]);
 
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
