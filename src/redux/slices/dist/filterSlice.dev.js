@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
+exports["default"] = exports.selectSort = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
@@ -38,5 +38,11 @@ var _filterSlice$actions = filterSlice.actions,
 exports.setPageCount = setPageCount;
 exports.setSort = setSort;
 exports.setCategoryId = setCategoryId;
+
+var selectSort = function selectSort(state) {
+  return state.filter.sort;
+};
+
+exports.selectSort = selectSort;
 var _default = filterSlice.reducer;
 exports["default"] = _default;

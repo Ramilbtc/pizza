@@ -26,5 +26,6 @@ export const filterSlice = createSlice({
 });
 
 export const { setCategoryId, setSort, setPageCount } = filterSlice.actions;
+export const selectSort = (state) => state.filter.sort;
 
 export default filterSlice.reducer;

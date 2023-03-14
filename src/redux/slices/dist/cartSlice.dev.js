@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.clearItems = exports.minusItem = exports.removeItem = exports.addItem = exports.cartSlice = void 0;
+exports["default"] = exports.clearItems = exports.minusItem = exports.removeItem = exports.addItem = exports.selectCart = exports.cartSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
@@ -59,6 +59,12 @@ var cartSlice = (0, _toolkit.createSlice)({
   }
 });
 exports.cartSlice = cartSlice;
+
+var selectCart = function selectCart(state) {
+  return state.cart;
+};
+
+exports.selectCart = selectCart;
 var _cartSlice$actions = cartSlice.actions,
     addItem = _cartSlice$actions.addItem,
     removeItem = _cartSlice$actions.removeItem,

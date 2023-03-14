@@ -15,20 +15,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var fetchPizzas = (0, _toolkit.createAsyncThunk)('pizza/fetchPizzasStatus', function _callee(_ref) {
-  var sortBy, order, category, search, pageCount, _ref2, data;
+var fetchPizzas = (0, _toolkit.createAsyncThunk)('pizza/fetchPizzasStatus', function _callee(params, thunkAPI) {
+  var sortBy, order, category, search, pageCount, _ref, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          sortBy = _ref.sortBy, order = _ref.order, category = _ref.category, search = _ref.search, pageCount = _ref.pageCount;
+          sortBy = params.sortBy, order = params.order, category = params.category, search = params.search, pageCount = params.pageCount;
           _context.next = 3;
           return regeneratorRuntime.awrap(_axios["default"].get("https://63fc3ef6859df29986b8ebfe.mockapi.io/items?page=".concat(pageCount, "&limit=4&").concat(category, "&sortBy=").concat(sortBy, "&order=").concat(order).concat(search)));
 
         case 3:
-          _ref2 = _context.sent;
-          data = _ref2.data;
+          _ref = _context.sent;
+          data = _ref.data;
           return _context.abrupt("return", data);
 
         case 6:
