@@ -3,11 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.selectSort = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
+exports["default"] = exports.selectFilter = exports.selectSort = exports.setSearchValue = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
 var initialState = {
+  searchValue: '',
   categoryId: 0,
   pageCount: 1,
   sort: {
@@ -22,6 +23,9 @@ var filterSlice = (0, _toolkit.createSlice)({
     setCategoryId: function setCategoryId(state, action) {
       state.categoryId = action.payload;
     },
+    setSearchValue: function setSearchValue(state, action) {
+      state.searchValue = action.payload;
+    },
     setSort: function setSort(state, action) {
       state.sort = action.payload;
     },
@@ -34,7 +38,9 @@ exports.filterSlice = filterSlice;
 var _filterSlice$actions = filterSlice.actions,
     setCategoryId = _filterSlice$actions.setCategoryId,
     setSort = _filterSlice$actions.setSort,
-    setPageCount = _filterSlice$actions.setPageCount;
+    setPageCount = _filterSlice$actions.setPageCount,
+    setSearchValue = _filterSlice$actions.setSearchValue;
+exports.setSearchValue = setSearchValue;
 exports.setPageCount = setPageCount;
 exports.setSort = setSort;
 exports.setCategoryId = setCategoryId;
@@ -44,5 +50,11 @@ var selectSort = function selectSort(state) {
 };
 
 exports.selectSort = selectSort;
+
+var selectFilter = function selectFilter(state) {
+  return state.filter;
+};
+
+exports.selectFilter = selectFilter;
 var _default = filterSlice.reducer;
 exports["default"] = _default;

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.setItems = exports.fetchPizzas = void 0;
+exports["default"] = exports.setItems = exports.selectPizzaData = exports.fetchPizzas = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -62,6 +62,12 @@ var pizzaSlice = (0, _toolkit.createSlice)({
     state.items = [];
   }), _extraReducers)
 });
+
+var selectPizzaData = function selectPizzaData(state) {
+  return state.pizza;
+};
+
+exports.selectPizzaData = selectPizzaData;
 var setItems = pizzaSlice.actions.setItems;
 exports.setItems = setItems;
 var _default = pizzaSlice.reducer;
