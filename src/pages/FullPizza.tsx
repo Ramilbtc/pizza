@@ -3,7 +3,11 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const FullPizza: React.FC = () => {
-  const [pizza, setPizza] = React.useState();
+  const [pizza, setPizza] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+  }>();
   const { id } = useParams();
 
   React.useEffect(() => {
