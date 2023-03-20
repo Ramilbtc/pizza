@@ -23,7 +23,7 @@ var Search = function () {
         updateSearchValue(event.target.value);
     };
     return (react_1["default"].createElement("div", { className: Search_module_scss_1["default"].root },
-        react_1["default"].createElement("svg", { className: Search_module_scss_1["default"].icon, className: "feather feather-search", fill: "none", height: "24", stroke: "currentColor", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", viewBox: "0 0 24 24", width: "24", xmlns: "http://www.w3.org/2000/svg" },
+        react_1["default"].createElement("svg", { className: Search_module_scss_1["default"].icon, fill: "none", height: "24", stroke: "currentColor", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", viewBox: "0 0 24 24", width: "24", xmlns: "http://www.w3.org/2000/svg" },
             react_1["default"].createElement("circle", { cx: "11", cy: "11", r: "8" }),
             react_1["default"].createElement("line", { x1: "21", x2: "16.65", y1: "21", y2: "16.65" })),
         react_1["default"].createElement("input", { ref: inputRef, value: value, onChange: onChangeInput, className: Search_module_scss_1["default"].input, placeholder: "\u041F\u043E\u0438\u0441\u043A \u043F\u0438\u0446\u0446\u044B..." }),

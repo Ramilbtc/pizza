@@ -10,21 +10,21 @@ import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 
-const Home = () => {
+const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const categoryId = useSelector((state) => state.filter.categoryId);
-  const sortType = useSelector((state) => state.filter.sort);
-  const pageCount = useSelector((state) => state.filter.pageCount);
+  const categoryId = useSelector((state: any) => state.filter.categoryId);
+  const sortType = useSelector((state: any) => state.filter.sort);
+  const pageCount = useSelector((state: any) => state.filter.pageCount);
   const { items, status } = useSelector(selectPizzaData);
 
   const { searchValue } = useSelector(selectFilter);
 
-  const onChangeCategory = (id) => {
-    dispatch(setCategoryId(id));
+  const onChangeCategory = (idx: number) => {
+    dispatch(setCategoryId(idx));
   };
 
-  const onChangePage = (number) => {
-    dispatch(setPageCount(number));
+  const onChangePage = (page: number) => {
+    dispatch(setPageCount(page));
   };
 
   React.useEffect(() => {
@@ -34,13 +34,22 @@ const Home = () => {
       const category = categoryId > 0 ? `category=${categoryId}` : '';
       const search = searchValue ? `&search=${searchValue}` : '';
 
-      dispatch(fetchPizzas({ sortBy, order, category, search, pageCount }));
+      dispatch(
+        // @ts-ignore
+        fetchPizzas({
+          sortBy,
+          order,
+          category,
+          search,
+          pageCount,
+        }),
+      );
       window.scrollTo(0, 0);
     }
     fetchData();
   }, [categoryId, sortType, searchValue, pageCount]);
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
