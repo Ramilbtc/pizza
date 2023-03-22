@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.setItems = exports.selectPizzaData = exports.fetchPizzas = void 0;
+exports.setItems = exports.selectPizzaData = exports.fetchPizzas = exports.Status = void 0;
 var axios_1 = require("axios");
 var toolkit_1 = require("@reduxjs/toolkit");
 var Status;
@@ -44,7 +44,7 @@ var Status;
     Status["LOADING"] = "loading";
     Status["SUCCESS"] = "success";
     Status["ERROR"] = "error";
-})(Status || (Status = {}));
+})(Status = exports.Status || (exports.Status = {}));
 exports.fetchPizzas = toolkit_1.createAsyncThunk('pizza/fetchPizzasStatus', function (params) { return __awaiter(void 0, void 0, void 0, function () {
     var sortBy, order, category, search, pageCount, data;
     return __generator(this, function (_a) {
@@ -60,7 +60,7 @@ exports.fetchPizzas = toolkit_1.createAsyncThunk('pizza/fetchPizzasStatus', func
 }); });
 var initialState = {
     items: [],
-    status: 'loading'
+    status: Status.LOADING
 };
 var pizzaSlice = toolkit_1.createSlice({
     name: 'pizza',
@@ -72,15 +72,15 @@ var pizzaSlice = toolkit_1.createSlice({
     },
     extraReducers: function (builder) {
         builder.addCase(exports.fetchPizzas.pending, function (state, action) {
-            state.status = 'loading';
+            state.status = Status.LOADING;
             state.items = [];
         });
         builder.addCase(exports.fetchPizzas.fulfilled, function (state, action) {
             state.items = action.payload;
-            state.status = 'success';
+            state.status = Status.SUCCESS;
         });
         builder.addCase(exports.fetchPizzas.rejected, function (state, action) {
-            state.status = 'error';
+            state.status = Status.ERROR;
             state.items = [];
         });
     }

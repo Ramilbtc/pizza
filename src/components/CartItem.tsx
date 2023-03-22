@@ -20,6 +20,12 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, price, type, size, image
     dispatch(
       addItem({
         id,
+        title,
+        price,
+        type,
+        size,
+        imageUrl,
+        count,
       }),
     );
   };

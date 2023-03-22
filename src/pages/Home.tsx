@@ -9,9 +9,10 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const categoryId = useSelector((state: any) => state.filter.categoryId);
   const sortType = useSelector((state: any) => state.filter.sort);
   const pageCount = useSelector((state: any) => state.filter.pageCount);
@@ -35,7 +36,6 @@ const Home: React.FC = () => {
       const search = searchValue ? `&search=${searchValue}` : '';
 
       dispatch(
-        // @ts-ignore
         fetchPizzas({
           sortBy,
           order,

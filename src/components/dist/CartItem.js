@@ -8,7 +8,13 @@ var CartItem = function (_a) {
     var dispatch = react_redux_1.useDispatch();
     var onClickPlus = function () {
         dispatch(cartSlice_1.addItem({
-            id: id
+            id: id,
+            title: title,
+            price: price,
+            type: type,
+            size: size,
+            imageUrl: imageUrl,
+            count: count
         }));
     };
     var onClickMinus = function () {

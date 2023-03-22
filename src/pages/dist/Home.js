@@ -63,8 +63,9 @@ var Sort_1 = require("../components/Sort");
 var PizzaBlock_1 = require("../components/PizzaBlock");
 var Skeleton_1 = require("../components/PizzaBlock/Skeleton");
 var Pagination_1 = require("../components/Pagination");
+var store_1 = require("../redux/store");
 var Home = function () {
-    var dispatch = react_redux_1.useDispatch();
+    var dispatch = store_1.useAppDispatch();
     var categoryId = react_redux_1.useSelector(function (state) { return state.filter.categoryId; });
     var sortType = react_redux_1.useSelector(function (state) { return state.filter.sort; });
     var pageCount = react_redux_1.useSelector(function (state) { return state.filter.pageCount; });
@@ -85,9 +86,7 @@ var Home = function () {
                     order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
                     category = categoryId > 0 ? "category=" + categoryId : '';
                     search = searchValue ? "&search=" + searchValue : '';
-                    dispatch(
-                    // @ts-ignore
-                    pizzaSlice_1.fetchPizzas({
+                    dispatch(pizzaSlice_1.fetchPizzas({
                         sortBy: sortBy,
                         order: order,
                         category: category,
