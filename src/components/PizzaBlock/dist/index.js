@@ -19,7 +19,8 @@ var PizzaBlock = function (_a) {
             price: price,
             imageUrl: imageUrl,
             type: typesName[activeType],
-            size: sizes[activeSize]
+            size: sizes[activeSize],
+            count: 0
         };
         dispatch(cartSlice_1.addItem(item));
     };
