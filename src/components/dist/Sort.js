@@ -4,14 +4,14 @@ var react_1 = require("react");
 var react_redux_1 = require("react-redux");
 var filterSlice_1 = require("../redux/slices/filterSlice");
 var list = [
-    { name: 'популярности (DESC)', sortProperty: 'rating' },
-    { name: 'популярности (ASC)', sortProperty: '-rating' },
-    { name: 'цене (DESC)', sortProperty: 'price' },
-    { name: 'цене (ASC)', sortProperty: '-price' },
-    { name: 'алфавиту (DESC)', sortProperty: 'title' },
-    { name: 'алфавиту (ASC)', sortProperty: '-title' },
+    { name: 'популярности (DESC)', sortProperty: filterSlice_1.SortPropertyEnum.RATING_DESC },
+    { name: 'популярности (ASC)', sortProperty: filterSlice_1.SortPropertyEnum.RATING_ASC },
+    { name: 'цене (DESC)', sortProperty: filterSlice_1.SortPropertyEnum.PRICE_DESC },
+    { name: 'цене (ASC)', sortProperty: filterSlice_1.SortPropertyEnum.PRICE_ASC },
+    { name: 'алфавиту (DESC)', sortProperty: filterSlice_1.SortPropertyEnum.TITLE_DESC },
+    { name: 'алфавиту (ASC)', sortProperty: filterSlice_1.SortPropertyEnum.TITLE_ASC },
 ];
-function Sort() {
+function SortPopup() {
     var dispatch = react_redux_1.useDispatch();
     var sort = react_redux_1.useSelector(filterSlice_1.selectSort);
     var sortRef = react_1["default"].useRef(null);
@@ -40,4 +40,4 @@ function Sort() {
         open && (react_1["default"].createElement("div", { className: "sort__popup" },
             react_1["default"].createElement("ul", null, list.map(function (obj, i) { return (react_1["default"].createElement("li", { key: i, onClick: function () { return onClickListItem(obj); }, className: sort.sortProperty === obj.sortProperty ? 'active' : '' }, obj.name)); }))))));
 }
-exports["default"] = Sort;
+exports["default"] = SortPopup;

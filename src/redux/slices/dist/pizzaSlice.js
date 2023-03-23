@@ -45,6 +45,10 @@ var Status;
     Status["SUCCESS"] = "success";
     Status["ERROR"] = "error";
 })(Status = exports.Status || (exports.Status = {}));
+var initialState = {
+    items: [],
+    status: Status.LOADING
+};
 exports.fetchPizzas = toolkit_1.createAsyncThunk('pizza/fetchPizzasStatus', function (params) { return __awaiter(void 0, void 0, void 0, function () {
     var sortBy, order, category, search, pageCount, data;
     return __generator(this, function (_a) {
@@ -58,10 +62,6 @@ exports.fetchPizzas = toolkit_1.createAsyncThunk('pizza/fetchPizzasStatus', func
         }
     });
 }); });
-var initialState = {
-    items: [],
-    status: Status.LOADING
-};
 var pizzaSlice = toolkit_1.createSlice({
     name: 'pizza',
     initialState: initialState,

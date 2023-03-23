@@ -1,15 +1,24 @@
 "use strict";
 var _a;
 exports.__esModule = true;
-exports.selectFilter = exports.selectSort = exports.setSearchValue = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = void 0;
+exports.selectFilter = exports.selectSort = exports.setSearchValue = exports.setPageCount = exports.setSort = exports.setCategoryId = exports.filterSlice = exports.SortPropertyEnum = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
+var SortPropertyEnum;
+(function (SortPropertyEnum) {
+    SortPropertyEnum["RATING_DESC"] = "rating";
+    SortPropertyEnum["RATING_ASC"] = "-rating";
+    SortPropertyEnum["TITLE_DESC"] = "title";
+    SortPropertyEnum["TITLE_ASC"] = "-title";
+    SortPropertyEnum["PRICE_DESC"] = "price";
+    SortPropertyEnum["PRICE_ASC"] = "-price";
+})(SortPropertyEnum = exports.SortPropertyEnum || (exports.SortPropertyEnum = {}));
 var initialState = {
     searchValue: '',
     categoryId: 0,
     pageCount: 1,
     sort: {
         name: 'популярности',
-        sortProperty: 'rating'
+        sortProperty: SortPropertyEnum.PRICE_DESC
     }
 };
 exports.filterSlice = toolkit_1.createSlice({
