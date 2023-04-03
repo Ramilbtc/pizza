@@ -1,4 +1,3 @@
-import { Sort } from './filterSlice';
 import { RootState } from './../store';
 import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
