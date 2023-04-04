@@ -37,11 +37,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var react_1 = require("react");
-var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
+var axios_1 = require("axios");
+var react_router_dom_2 = require("react-router-dom");
 var FullPizza = function () {
     var _a = react_1["default"].useState(), pizza = _a[0], setPizza = _a[1];
-    var id = react_router_dom_1.useParams().id;
+    var id = react_router_dom_2.useParams().id;
     react_1["default"].useEffect(function () {
         function fetchPizza() {
             return __awaiter(this, void 0, void 0, function () {
@@ -73,6 +74,9 @@ var FullPizza = function () {
     return (react_1["default"].createElement("div", { className: "container" },
         react_1["default"].createElement("img", { src: pizza.imageUrl }),
         react_1["default"].createElement("h2", null, pizza.title),
-        react_1["default"].createElement("h4", null, pizza.price)));
+        react_1["default"].createElement("h4", null, pizza.price),
+        react_1["default"].createElement(react_router_dom_1.Link, { to: "/" },
+            react_1["default"].createElement("button", { className: "button button--outline button--add" },
+                react_1["default"].createElement("span", null, "\u041D\u0430\u0437\u0430\u0434")))));
 };
 exports["default"] = FullPizza;
