@@ -12,12 +12,12 @@ var __assign = (this && this.__assign) || function () {
 };
 var _a;
 exports.__esModule = true;
-exports.clearItems = exports.minusItem = exports.removeItem = exports.addItem = exports.selectCartItemById = exports.selectCart = exports.cartSlice = void 0;
+exports.clearItems = exports.minusItem = exports.removeItem = exports.addItem = exports.cartSlice = void 0;
+var calcTotalPrice_1 = require("../../utils/calcTotalPrice");
+var getCartFromLS_1 = require("../../utils/getCartFromLS");
 var toolkit_1 = require("@reduxjs/toolkit");
-var initialState = {
-    totalPrice: 0,
-    items: []
-};
+var _b = getCartFromLS_1.getCartFromLS(), items = _b.items, totalPrice = _b.totalPrice;
+var initialState = getCartFromLS_1.getCartFromLS();
 exports.cartSlice = toolkit_1.createSlice({
     name: 'cart',
     initialState: initialState,
@@ -30,9 +30,7 @@ exports.cartSlice = toolkit_1.createSlice({
             else {
                 state.items.push(__assign(__assign({}, action.payload), { count: 1 }));
             }
-            state.totalPrice = state.items.reduce(function (sum, obj) {
-                return obj.price * obj.count + sum;
-            }, 0);
+            state.totalPrice = calcTotalPrice_1.calcTotalPrice(state.items);
         },
         minusItem: function (state, action) {
             var findItem = state.items.find(function (obj) { return obj.id === action.payload; });
@@ -49,9 +47,5 @@ exports.cartSlice = toolkit_1.createSlice({
         }
     }
 });
-exports.selectCart = function (state) { return state.cart; };
-exports.selectCartItemById = function (id) { return function (state) {
-    return state.cart.items.find(function (obj) { return obj.id === id; });
-}; };
 exports.addItem = (_a = exports.cartSlice.actions, _a.addItem), exports.removeItem = _a.removeItem, exports.minusItem = _a.minusItem, exports.clearItems = _a.clearItems;
 exports["default"] = exports.cartSlice.reducer;

@@ -56,26 +56,28 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var react_redux_1 = require("react-redux");
-var filterSlice_1 = require("../redux/slices/filterSlice");
-var pizzaSlice_1 = require("../redux/slices/pizzaSlice");
 var Categories_1 = require("../components/Categories");
 var Sort_1 = require("../components/Sort");
 var PizzaBlock_1 = require("../components/PizzaBlock");
 var Skeleton_1 = require("../components/PizzaBlock/Skeleton");
 var Pagination_1 = require("../components/Pagination");
 var store_1 = require("../redux/store");
+var asyncActions_1 = require("../redux/pizza/asyncActions");
+var selectors_1 = require("../redux/pizza/selectors");
+var selectors_2 = require("../redux/filter/selectors");
+var slice_1 = require("../redux/filter/slice");
 var Home = function () {
     var dispatch = store_1.useAppDispatch();
     var categoryId = react_redux_1.useSelector(function (state) { return state.filter.categoryId; });
     var sortType = react_redux_1.useSelector(function (state) { return state.filter.sort; });
     var pageCount = react_redux_1.useSelector(function (state) { return state.filter.pageCount; });
-    var _a = react_redux_1.useSelector(pizzaSlice_1.selectPizzaData), items = _a.items, status = _a.status;
-    var searchValue = react_redux_1.useSelector(filterSlice_1.selectFilter).searchValue;
-    var onChangeCategory = function (idx) {
-        dispatch(filterSlice_1.setCategoryId(idx));
-    };
+    var _a = react_redux_1.useSelector(selectors_1.selectPizzaData), items = _a.items, status = _a.status;
+    var _b = react_redux_1.useSelector(selectors_2.selectFilter), searchValue = _b.searchValue, sort = _b.sort;
+    var onChangeCategory = react_1["default"].useCallback(function (idx) {
+        dispatch(slice_1.setCategoryId(idx));
+    }, []);
     var onChangePage = function (page) {
-        dispatch(filterSlice_1.setPageCount(page));
+        dispatch(slice_1.setPageCount(page));
     };
     react_1["default"].useEffect(function () {
         function fetchData() {
@@ -86,7 +88,7 @@ var Home = function () {
                     order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
                     category = categoryId > 0 ? "category=" + categoryId : '';
                     search = searchValue ? "&search=" + searchValue : '';
-                    dispatch(pizzaSlice_1.fetchPizzas({
+                    dispatch(asyncActions_1.fetchPizzas({
                         sortBy: sortBy,
                         order: order,
                         category: category,

@@ -2,14 +2,16 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filterSlice';
-import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import { useAppDispatch } from '../redux/store';
+import { fetchPizzas } from '../redux/pizza/asyncActions';
+import { selectPizzaData } from '../redux/pizza/selectors';
+import { selectFilter } from '../redux/filter/selectors';
+import { setCategoryId, setPageCount } from '../redux/filter/slice';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,11 +20,11 @@ const Home: React.FC = () => {
   const pageCount = useSelector((state: any) => state.filter.pageCount);
   const { items, status } = useSelector(selectPizzaData);
 
-  const { searchValue } = useSelector(selectFilter);
+  const { searchValue, sort } = useSelector(selectFilter);
 
-  const onChangeCategory = (idx: number) => {
+  const onChangeCategory = React.useCallback((idx: number) => {
     dispatch(setCategoryId(idx));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setPageCount(page));

@@ -15,15 +15,15 @@ var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 var react_redux_1 = require("react-redux");
 var CartItem_1 = require("../components/CartItem");
-var cartSlice_1 = require("../redux/slices/cartSlice");
 var CartEmpty_1 = require("../components/CartEmpty");
+var slice_1 = require("../redux/cart/slice");
 var Cart = function () {
     var dispatch = react_redux_1.useDispatch();
     var _a = react_redux_1.useSelector(function (state) { return state.cart; }), items = _a.items, totalPrice = _a.totalPrice;
     var totalCount = items.reduce(function (sum, item) { return sum + item.count; }, 0);
     var onClickClear = function () {
         if (window.confirm('Очистить корзину?')) {
-            dispatch(cartSlice_1.clearItems());
+            dispatch(slice_1.clearItems());
         }
     };
     if (!totalPrice) {

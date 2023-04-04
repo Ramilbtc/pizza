@@ -2,13 +2,14 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var react_redux_1 = require("react-redux");
-var cartSlice_1 = require("../../redux/slices/cartSlice");
 var react_router_dom_1 = require("react-router-dom");
+var selectors_1 = require("../../redux/cart/selectors");
+var slice_1 = require("../../redux/cart/slice");
 var typesName = ['тонкое', 'традиционное'];
 var PizzaBlock = function (_a) {
     var id = _a.id, title = _a.title, price = _a.price, imageUrl = _a.imageUrl, sizes = _a.sizes, types = _a.types;
     var dispatch = react_redux_1.useDispatch();
-    var cartItem = react_redux_1.useSelector(cartSlice_1.selectCartItemById(id));
+    var cartItem = react_redux_1.useSelector(selectors_1.selectCartItemById(id));
     var _b = react_1["default"].useState(0), activeType = _b[0], setActiveType = _b[1];
     var _c = react_1["default"].useState(0), activeSize = _c[0], setActiveSize = _c[1];
     var addedCount = cartItem ? cartItem.count : 0;
@@ -22,7 +23,7 @@ var PizzaBlock = function (_a) {
             size: sizes[activeSize],
             count: 0
         };
-        dispatch(cartSlice_1.addItem(item));
+        dispatch(slice_1.addItem(item));
     };
     return (react_1["default"].createElement("div", { className: "pizza-block-wrapper" },
         react_1["default"].createElement("div", { className: "pizza-block" },

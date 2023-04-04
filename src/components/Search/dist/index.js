@@ -4,19 +4,19 @@ var react_1 = require("react");
 var lodash_debounce_1 = require("lodash.debounce");
 var Search_module_scss_1 = require("./Search.module.scss");
 var react_redux_1 = require("react-redux");
-var filterSlice_1 = require("../../redux/slices/filterSlice");
+var slice_1 = require("../../redux/filter/slice");
 var Search = function () {
     var dispatch = react_redux_1.useDispatch();
     var _a = react_1["default"].useState(''), value = _a[0], setValue = _a[1];
     var inputRef = react_1["default"].useRef(null);
     var onClickClear = function () {
         var _a;
-        dispatch(filterSlice_1.setSearchValue(''));
+        dispatch(slice_1.setSearchValue(''));
         setValue('');
         (_a = inputRef.current) === null || _a === void 0 ? void 0 : _a.focus();
     };
     var updateSearchValue = react_1["default"].useCallback(lodash_debounce_1["default"](function (str) {
-        dispatch(filterSlice_1.setSearchValue(str));
+        dispatch(slice_1.setSearchValue(str));
     }, 350), []);
     var onChangeInput = function (event) {
         setValue(event.target.value);

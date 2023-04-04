@@ -2,22 +2,24 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var react_redux_1 = require("react-redux");
-var filterSlice_1 = require("../redux/slices/filterSlice");
+var selectors_1 = require("../redux/filter/selectors");
+var slice_1 = require("../redux/filter/slice");
+var types_1 = require("../redux/filter/types");
 var list = [
-    { name: 'популярности (DESC)', sortProperty: filterSlice_1.SortPropertyEnum.RATING_DESC },
-    { name: 'популярности (ASC)', sortProperty: filterSlice_1.SortPropertyEnum.RATING_ASC },
-    { name: 'цене (DESC)', sortProperty: filterSlice_1.SortPropertyEnum.PRICE_DESC },
-    { name: 'цене (ASC)', sortProperty: filterSlice_1.SortPropertyEnum.PRICE_ASC },
-    { name: 'алфавиту (DESC)', sortProperty: filterSlice_1.SortPropertyEnum.TITLE_DESC },
-    { name: 'алфавиту (ASC)', sortProperty: filterSlice_1.SortPropertyEnum.TITLE_ASC },
+    { name: 'популярности (DESC)', sortProperty: types_1.SortPropertyEnum.RATING_DESC },
+    { name: 'популярности (ASC)', sortProperty: types_1.SortPropertyEnum.RATING_ASC },
+    { name: 'цене (DESC)', sortProperty: types_1.SortPropertyEnum.PRICE_DESC },
+    { name: 'цене (ASC)', sortProperty: types_1.SortPropertyEnum.PRICE_ASC },
+    { name: 'алфавиту (DESC)', sortProperty: types_1.SortPropertyEnum.TITLE_DESC },
+    { name: 'алфавиту (ASC)', sortProperty: types_1.SortPropertyEnum.TITLE_ASC },
 ];
-function SortPopup() {
+var SortPopup = react_1["default"].memo(function () {
     var dispatch = react_redux_1.useDispatch();
-    var sort = react_redux_1.useSelector(filterSlice_1.selectSort);
+    var sort = react_redux_1.useSelector(selectors_1.selectSort);
     var sortRef = react_1["default"].useRef(null);
     var _a = react_1["default"].useState(false), open = _a[0], setOpen = _a[1];
     var onClickListItem = function (obj) {
-        dispatch(filterSlice_1.setSort(obj));
+        dispatch(slice_1.setSort(obj));
         setOpen(false);
     };
     // React.useEffect(() => {
@@ -39,5 +41,5 @@ function SortPopup() {
             react_1["default"].createElement("span", { onClick: function () { return setOpen(!open); } }, sort.name)),
         open && (react_1["default"].createElement("div", { className: "sort__popup" },
             react_1["default"].createElement("ul", null, list.map(function (obj, i) { return (react_1["default"].createElement("li", { key: i, onClick: function () { return onClickListItem(obj); }, className: sort.sortProperty === obj.sortProperty ? 'active' : '' }, obj.name)); }))))));
-}
+});
 exports["default"] = SortPopup;
