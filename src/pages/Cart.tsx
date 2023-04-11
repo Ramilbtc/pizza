@@ -20,7 +20,7 @@ const Cart: React.FC = () => {
   if (!totalPrice) {
     return <CartEmpty />;
   }
-
+ 
   return (
     <div className="container container--cart">
       <div className="cart">
