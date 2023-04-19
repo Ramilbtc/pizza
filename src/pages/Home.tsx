@@ -68,10 +68,10 @@ const Home: React.FC = () => {
             <h2>Произошла ошибка при запросе</h2>
           </div>
         ) : (
-          <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
+          < div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
         )}
         <Pagination onChangePage={onChangePage} />
-      </div>
+      </div >
     </>
   );
 };
